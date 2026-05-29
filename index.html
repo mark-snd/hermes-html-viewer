@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인천 날씨 — 2026.05.30</title>
+<style>
+  :root {
+    --bg: #05080e;
+    --card: #0b1018;
+    --card-border: #142030;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #6b7a8d;
+    --accent: #38bdf8;
+    --accent-muted: rgba(56,189,248,0.12);
+    --up: #4ade80;
+    --down: #f87171;
+    --separator: #142030;
+    --hero-icon: #fbbf24;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height:100vh;
+  }
+  .container {
+    width: min(580px, 100vw);
+    margin: 0 auto;
+    padding: 18px 14px 40px;
+  }
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:16px;
+  }
+  .header h1 { font-size:20px; font-weight:800; }
+  .header .date { font-size:12px; color:var(--text-secondary); font-weight:600; }
+  
+  /* Hero current weather */
+  .hero {
+    background: var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:22px 18px;
+    text-align:center;
+    margin-bottom:14px;
+  }
+  .hero-icon { font-size:44px; line-height:1; margin-bottom:6px; }
+  .hero-temp { font-size:52px; font-weight:800; line-height:1.1; }
+  .hero-temp .unit { font-size:22px; font-weight:600; color:var(--text-secondary); }
+  .hero-desc { font-size:14px; font-weight:700; color:var(--text-secondary); margin-top:4px; }
+  .hero-feel { font-size:12px; color:var(--text-muted); margin-top:2px; font-weight:600; }
+  
+  /* Details grid */
+  .detail-grid {
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:1px;
+    background: var(--separator); border-radius:10px; overflow:hidden;
+    margin-bottom:14px;
+  }
+  .detail-cell {
+    background: var(--card); padding:12px 6px 10px; text-align:center;
+  }
+  .detail-label { font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.4px; }
+  .detail-value { font-size:16px; font-weight:800; margin-top:3px; }
+  .detail-sub { font-size:11px; color:var(--text-muted); font-weight:600; margin-top:1px; }
+  
+  /* 7-day forecast */
+  .section-title { font-size:14px; font-weight:800; margin:18px 0 10px 4px; }
+  .forecast-list { background:var(--card); border:1px solid var(--card-border); border-radius:12px; overflow:hidden; }
+  .forecast-row {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px; border-bottom:1px solid var(--separator);
+  }
+  .forecast-row:last-child { border-bottom:none; }
+  .forecast-left { display:flex; align-items:center; gap:8px; }
+  .forecast-day { font-size:13px; font-weight:700; width:36px; }
+  .forecast-icon { font-size:18px; }
+  .forecast-desc { font-size:12px; color:var(--text-secondary); font-weight:600; }
+  .forecast-temps { display:flex; align-items:center; gap:6px; }
+  .temp-high { font-size:14px; font-weight:800; color:var(--text-primary); }
+  .temp-bar-bg {
+    width:40px; height:4px; background:#1e293b; border-radius:2px; position:relative;
+  }
+  .temp-bar-fill {
+    position:absolute; top:0; left:0; height:100%; border-radius:2px;
+    background: linear-gradient(90deg, #38bdf8, #fbbf24);
+  }
+  .temp-low { font-size:13px; font-weight:700; color:var(--text-muted); }
+  .rain-chance { font-size:11px; color:var(--accent); font-weight:700; margin-left:4px; }
+  
+  /* sun info */
+  .sun-strip {
+    display:flex; gap:1px; background:var(--separator); border-radius:10px; overflow:hidden;
+    margin-bottom:14px;
+  }
+  .sun-cell {
+    flex:1; background:var(--card); padding:12px 8px; text-align:center;
+  }
+  .sun-label { font-size:10px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; }
+  .sun-value { font-size:14px; font-weight:800; margin-top:2px; }
+  
+  /* footer */
+  .footer {
+    text-align:center; font-size:11px; color:var(--text-muted); margin-top:16px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🌤️ 인천 날씨</h1>
+    <span class="date">2026.05.30 토요일</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-icon">☀️</div>
+    <div class="hero-temp">14.1<span class="unit">°C</span></div>
+    <div class="hero-desc">맑음 (Clear Sky)</div>
+    <div class="hero-feel">체감온도 14.0°C</div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-cell">
+      <div class="detail-label">습도</div>
+      <div class="detail-value">94%</div>
+      <div class="detail-sub">매우 높음</div>
+    </div>
+    <div class="detail-cell">
+      <div class="detail-label">풍속</div>
+      <div class="detail-value">8.1</div>
+      <div class="detail-sub">km/h 남서풍</div>
+    </div>
+    <div class="detail-cell">
+      <div class="detail-label">강수량</div>
+      <div class="detail-value">0</div>
+      <div class="detail-sub">mm (없음)</div>
+    </div>
+  </div>
+
+  <div class="sun-strip">
+    <div class="sun-cell">
+      <div class="sun-label">🌅 일출</div>
+      <div class="sun-value">05:14</div>
+    </div>
+    <div class="sun-cell">
+      <div class="sun-label">🌇 일몰</div>
+      <div class="sun-value">19:46</div>
+    </div>
+    <div class="sun-cell">
+      <div class="sun-label">☀️ 일조시간</div>
+      <div class="sun-value">14h 32m</div>
+    </div>
+  </div>
+
+  <div class="section-title">📅 7일 예보</div>
+  <div class="forecast-list">
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">오늘</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">22.9°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:65%"></div></div>
+        <span class="temp-low">13.1°</span>
+        <span class="rain-chance">0%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">내일</span>
+        <span class="forecast-icon">🌤️</span>
+        <span class="forecast-desc">구름 낀 후 맑음</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">25.8°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:75%"></div></div>
+        <span class="temp-low">13.1°</span>
+        <span class="rain-chance">0%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">월</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">24.2°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:70%"></div></div>
+        <span class="temp-low">14.5°</span>
+        <span class="rain-chance">0%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">화</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">28.8°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:90%"></div></div>
+        <span class="temp-low">13.6°</span>
+        <span class="rain-chance">2%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">수</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">27.2°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:82%"></div></div>
+        <span class="temp-low">17.2°</span>
+        <span class="rain-chance">0%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">목</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">24.2°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:70%"></div></div>
+        <span class="temp-low">16.6°</span>
+        <span class="rain-chance">10%</span>
+      </div>
+    </div>
+    <div class="forecast-row">
+      <div class="forecast-left">
+        <span class="forecast-day">금</span>
+        <span class="forecast-icon">☁️</span>
+        <span class="forecast-desc">구름 조금</span>
+      </div>
+      <div class="forecast-temps">
+        <span class="temp-high">25.6°</span>
+        <div class="temp-bar-bg"><div class="temp-bar-fill" style="width:74%"></div></div>
+        <span class="temp-low">17.5°</span>
+        <span class="rain-chance">19%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Open-Meteo API · Updated 2026.05.30 04:00 KST</div>
+</div>
+</body>
+</html>
